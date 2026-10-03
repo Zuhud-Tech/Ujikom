@@ -13,6 +13,34 @@
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
         />
+
+        <style>
+            html,
+            body {
+                height: 100%;
+            }
+
+            body {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            main {
+                flex: 1;
+            }
+
+            .deskripsi-detail {
+                line-height: 1.8;
+                font-size: 16px;
+            }
+
+            .deskripsi-detail br + br {
+                content: "";
+                display: block;
+                margin-bottom: 12px;
+            }
+        </style>
     </head>
 
     <body>
@@ -45,7 +73,7 @@
                         <hr>
 
                         <p>
-                            {{ $kegiatan->deskripsi_kegiatan }}
+                            {!! nl2br(e($kegiatan->deskripsi_kegiatan)) !!}
                         </p>
 
                         <a href="{{ url('/kegiatan') }}" class="btn btn-dark">

@@ -57,7 +57,8 @@ class PrestasiResource extends Resource
                     ->disk('public')
                     ->directory('prestasi')
                     ->visibility('public')
-                    ->nullable(),
+                    ->nullable()
+                    ->required(),
                     
             ])
             ->columns(1);

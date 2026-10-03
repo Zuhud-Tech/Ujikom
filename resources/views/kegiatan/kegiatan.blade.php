@@ -15,6 +15,23 @@
         />
 
         <style>
+                html,
+            body {
+                height: 100%;
+            }
+
+            body {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            main {
+                flex: 1;
+            }
+
+
+
             .card-kegiatan {
                 transition: all 0.3s ease;
                 cursor: pointer;
