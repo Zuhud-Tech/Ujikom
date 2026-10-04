@@ -148,6 +148,102 @@
                 </div>
             </div>
 
+        <!-- Berita -->     
+        @php
+            use App\Models\Berita;
+
+            $beritas = Berita::latest('tanggal')
+                ->take(3)
+                ->get();
+        @endphp
+
+        <div class="py-5">
+            <div class="container">
+
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Berita Terbaru</h2>
+                    <p class="text-muted">
+                        Informasi dan berita terbaru SMKN 4 Bogor
+                    </p>
+                </div>
+
+                <div class="row g-4">
+
+                    @forelse ($beritas as $berita)
+
+                        <div class="col-12 col-md-4">
+
+                            <a href="{{ route('berita.detail', $berita->id) }}"
+                                class="text-decoration-none text-dark">
+
+                                <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+
+                                    @if ($berita->gambar)
+
+                                        <img
+                                            src="{{ Storage::url($berita->gambar) }}"
+                                            class="card-img-top"
+                                            style="height: 250px; object-fit: cover;"
+                                            alt="{{ $berita->judul_berita }}"
+                                        >
+
+                                    @else
+
+                                        <img
+                                            src="{{ asset('img/kegiatan.png') }}"
+                                            class="card-img-top"
+                                            style="height: 250px; object-fit: cover;"
+                                            alt="Berita"
+                                        >
+
+                                    @endif
+
+                                    <div class="card-body p-4">
+
+                                        <h5 class="fw-bold">
+                                            {{ $berita->judul_berita }}
+                                        </h5>
+
+                                        <p class="text-muted mb-2">
+                                            {{ Str::limit($berita->deskripsi_berita, 100) }}
+                                        </p>
+
+                                        <small class="text-muted">
+                                            {{ \Carbon\Carbon::parse($berita->tanggal)->format('d M Y') }}
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                    @empty
+
+                        <div class="col-12 text-center">
+                            <p class="text-muted">
+                                Belum ada berita.
+                            </p>
+                        </div>
+
+                    @endforelse
+
+                </div>
+
+                <div class="text-center">
+
+                    <a href="/berita" class="btn btn-dark my-5">
+                        Lihat yang Lain
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+        
+
 
         <!-- Kegiatan -->
         @php
@@ -162,9 +258,12 @@
         <div class="py-5">
             <div class="container">
 
-                <h1 class="text-center fw-bold mb-5">
-                    Kegiatan Terbaru
-                </h1>
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Kegiatan Terbaru</h2>
+                    <p class="text-muted">
+                        Kegiatan terbaru SMKN 4 Bogor
+                    </p>
+                </div>
 
                 <div class="row g-4">
 
@@ -227,9 +326,12 @@
         <div class="py-5">
             <div class="container">
 
-                <h1 class="text-center fw-bold mb-5">
-                    Prestasi Terbaru
-                </h1>
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Prestasi Terbaru</h2>
+                    <p class="text-muted">
+                        Prestasi terbaru SMKN 4 Bogor
+                    </p>
+                </div>
 
                 <div class="row g-4">
 
